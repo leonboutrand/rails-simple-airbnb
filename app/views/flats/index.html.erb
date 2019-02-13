@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<h1>All our Flats</h1>
+<h6>We found <%= @flats.length %> flats on our website.</h6>
+
+<div class="row">
+  <% @flats.each do |flat| %>
+    <div class="col-xs-4">
+      <div class="card">
+        <img src="https://picsum.photos/200/300/?random" class="card-img-top" alt="amazing pic">
+        <div class="card-body">
+          <h5 class="card-title"><%= flat.name %></h5>
+          <p class="card-text"><%= flat.address %></p>
+          <div class="flex">
+            <div class="flex">
+              <i class="fas fa-users"></i>
+              <%= flat.number_of_guests %>
+            </div>
+            <div class="flex">
+              <i class="fas fa-euro-sign"></i>
+              <%= flat.price_per_night %>
+            </div>
+          </div>
+        </div>
+        <div class="card-footer">
+          <%= link_to 'More info', flat, class: 'card-link' %>
+          <%= link_to 'Edit', edit_flat_path(flat), class: 'card-link' %>
+          <%= link_to 'Remove', flat, method: :delete, data: { confirm: 'Are you sure?' }, class: 'card-link' %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<br>
+
+<%= link_to 'New Flat', new_flat_path %>
